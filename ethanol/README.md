@@ -37,3 +37,35 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+File Structure
+
+my-vue-app/
+├── node_modules/           # Installed npm packages
+├── public/                 # Static assets
+│   ├── favicon.ico         # Favicon
+│   └── index.html          # Main HTML file
+├── src/                    # Source files
+│   ├── assets/             # Static assets (images, fonts, etc.)
+│   ├── components/         # Reusable components
+│   │   ├── TVShows.vue     # Component to display TV shows
+│   │   ├── Movies.vue      # Component to display movies
+│   │   └── ...             # Other components
+│   ├── router/             # Router configuration
+│   │   └── index.ts        # Vue Router setup
+│   ├── views/              # Page-level components
+│   │   ├── Home.vue        # Home page component
+│   │   ├── TVShows.vue     # TV shows page component
+│   │   ├── Movies.vue      # Movies page component
+│   │   └── ...             # Other views
+│   ├── App.vue             # Main App component
+│   ├── main.ts             # Entry point for the application
+│   ├── env.d.ts            # TypeScript definitions for environment variables
+│   └── styles/             # Global styles (optional)
+│       └── main.css        # Main stylesheet
+├── .env                    # Environment variables
+├── .gitignore              # Git ignore file
+├── package.json            # Project metadata and dependencies
+├── tsconfig.json           # TypeScript configuration
+└── vue.config.js           # Vue CLI configuration (if needed)

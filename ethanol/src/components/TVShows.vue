@@ -44,7 +44,7 @@ export default {
         this.loading = true;
         this.error = null;
         axios
-          .get(`https://api.themoviedb.org/3/search/tv?api_key=YOUR_API_KEY&query=${this.query}`)
+          .get(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.VUE_APP_TMDB_API_KEY}&query=${this.query}`)
           .then(response => {
             this.tvShows = response.data.results;
           })
