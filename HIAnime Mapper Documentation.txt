@@ -1,0 +1,198 @@
+HIAnime Mapper Documentation
+Base URL: https://hianime-mapper-nu.vercel.app/
+
+#Documentation:
+##Get routes info & status of API
+
+request url
+
+https://hianime-mapper.vercel.app/
+response
+
+{
+  "about": "This API maps anilist anime to https://hianime.to and also returns the M3U8 links !",
+  "status": 200,
+  "routes": [
+    "/anime/info/:anilistId",
+    "/anime/servers/:episodeId",
+    "/anime/sources?serverId={server_id}&episodeId={episode_id}"
+  ]
+}
+
+##Get info of anime from anilist with hianime episode mappings
+
+request url
+
+https://hianime-mapper.vercel.app/anime/info/:anilistId
+
+example : https://hianime-mapper.vercel.app/anime/info/20
+response
+
+{
+  data: {
+    id: number;
+    idMal: number;
+    title: {
+      romaji: string;
+      english: string;
+      native: string;
+      userPreferred: string;
+    };
+    coverImage: {
+      extraLarge: string;
+      large: string;
+      medium: string;
+      color: string;
+    };
+    format: string;
+    description: string;
+    genres: string[];
+    season: string;
+    episodes: number;
+    nextAiringEpisode: {
+      id: number;
+      timeUntilAiring: number;
+      airingAt: number;
+      episode: number;
+    };
+    status: string;
+    duration: number;
+    seasonYear: number;
+    bannerImage: string;
+    favourites: number;
+    popularity: number;
+    averageScore: number;
+    trailer: {
+      id: number;
+      site: string;
+      thumbnail: string;
+    };
+    startDate: {
+      year: number;
+      month: number;
+      day: number;
+    };
+    countryOfOrigin: string;
+    recommendations: {
+      title: {
+        romaji: string;
+        english: string;
+        native: string;
+        userPreferred: string;
+      };
+      format: string;
+      coverImage: {
+        extraLarge: string;
+        large: string;
+        medium: string;
+        color: string;
+      };
+    }[];
+    relations: {
+      id: number;
+      title: {
+        romaji: string;
+        english: string;
+        native: string;
+        userPreferred: string;
+      };
+      coverImage: {
+        extraLarge: string;
+        large: string;
+        medium: string;
+        color: string;
+      };
+    }[];
+    characters: {
+      role: string;
+      name: {
+        first: string;
+        middle: string;
+        last: string;
+        full: string;
+        native: string;
+        userPreferred: string;
+      };
+      image: {
+        large: string;
+        medium: string;
+      };
+      voiceActors: {
+        name: {
+          first: string;
+          middle: string;
+          last: string;
+          full: string;
+          native: string;
+          userPreferred: string;
+        };
+        image: {
+          large: string;
+          medium: string;
+        };
+      }[];
+    }[];
+    episodesList: {
+      id: string;
+      episodeId: number;
+      title: string;
+      number: number;
+    }[];
+  };
+}
+
+##Get servers
+
+request url
+
+https://hianime-mapper.vercel.app/anime/servers/:episodeId
+
+example : https://hianime-mapper.vercel.app/anime/servers/12352
+response
+
+{
+    data: {
+        sub: {
+            serverId: string;
+            serverName: string;
+        }[],
+        dub: {
+            serverId: string;
+            serverName: string;
+        }[]
+    }
+}
+
+##Get sources
+
+request url
+
+https://hianime-mapper.vercel.app/anime/sources?serverId={server_id}&episodeId={episode_id}
+
+example : https://hianime-mapper.vercel.app/anime/sources?serverId=662001&episodeId=12352
+response
+
+ {
+     data:{
+    intro: {
+      start: number;
+      end: number;
+    };
+    outro: {
+      start: number;
+      end: number;
+    };
+    sources: {
+      url: string;
+      type: string;
+      isM3U8: boolean;
+    }[];
+    tracks: {
+      file: string;
+      kind: string;
+      label?: string;
+      default?: boolean;
+    }[];
+    server: number;
+  }
+ }
